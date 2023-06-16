@@ -132,17 +132,18 @@ class TaskTestCase(TestCase):
         """
         Gets all the tasks that match the searched date
         """
-        Task.objects.create(
+        task = Task.objects.create(
             user=self.user,
             title="Título",
             description="Description",
             completed=False,
             created_date='15/06/2023'
         )
+        date = task.created_date
         url = reverse('search-tasks')
         response = self.client.post(
             url,
-            data={'search_title': '', 'search_date': '2023-06-15'}
+            data={'search_title': '', 'search_date': date}
         )
         self.assertTrue('Título' in response.content.decode())
         self.assertTrue('Description' in response.content.decode())
@@ -170,17 +171,18 @@ class TaskTestCase(TestCase):
         """
         Gets all tasks that match the text and date searched
         """
-        Task.objects.create(
+        task = Task.objects.create(
             user=self.user,
             title="Título",
             description="Description",
             completed=False,
             created_date='15/06/2023'
         )
+        date = task.created_date
         url = reverse('search-tasks')
         response = self.client.post(
             url,
-            data={'search_title': 'Description', 'search_date': '2023-06-15'}
+            data={'search_title': 'Description', 'search_date': date}
         )
         self.assertTrue('Título' in response.content.decode())
         self.assertTrue('Description' in response.content.decode())
