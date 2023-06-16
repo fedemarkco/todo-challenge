@@ -1,37 +1,34 @@
-# Invera ToDo-List Challenge (Python/Django Jr-SSr)
+# Proyecto Invera
 
-El propósito de esta prueba es conocer tu capacidad para crear una pequeña aplicación funcional en un límite de tiempo. A continuación, encontrarás las funciones, los requisitos y los puntos clave que debés tener en cuenta durante el desarrollo.
+## Instalación
+Descargar el repositorio con:
 
-## Qué queremos que hagas:
+```
+git clone https://github.com/fedemarkco/todo-challenge.git
+```
+El proyecto se encuentra en un contenedor Docker, para poder levantarlo, se tiene que ejecutar:
 
-- El Challenge consiste en crear una aplicación web sencilla que permita a los usuarios crear y mantener una lista de tareas.
-- La entrega del resultado será en un nuevo fork de este repo y deberás hacer una pequeña demo del funcionamiento y desarrollo del proyecto ante un super comité de las más grandes mentes maestras de Invera, o a un par de devs, lo que sea más fácil de conseguir.
-- Podes contactarnos en caso que tengas alguna consulta.
+```
+cd todo-challenge
+docker-compose up
+```
+El contenedor fue configurado para que ejecute
+```
+python3 manage.py makemigrations app
+python3 manage.py migrate
+python3 manage.py runserver 0.0.0.0:8000
+```
+Para ingresar al sistema de autenticación, se tiene que ingresar a la URL
+```
+ http://localhost:8000
+```
+En el mismo te permitirá loguearte o registrarte.
+Una vez que te hayas registrado y logueado, encontrarás un panel que te permitirá crear tareas, marcar tareas como completadas, eliminarlas, listar las tareas o buscar/filtrar por fecha y/o contenido de la tarea.
 
-## Objetivos:
+Para correr los tests, se tiene que ejecutar
+```
+docker-compose run web pytest
+```
+Con respecto al manejo de logs, he utilizado logging la cual almacenará en el archivo general.log los logs generados.
 
-El usuario de la aplicación tiene que ser capaz de:
-
-- Autenticarse
-- Crear una tarea
-- Eliminar una tarea
-- Marcar tareas como completadas
-- Poder ver una lista de todas las tareas existentes
-- Filtrar/buscar tareas por fecha de creación y/o por el contenido de la misma
-
-## Qué evaluamos:
-
-- Desarrollo utilizando Python, Django. No es necesario crear un Front-End, pero sí es necesario tener una API que permita cumplir con los objetivos de arriba.
-- Uso de librerías y paquetes estandares que reduzcan la cantidad de código propio añadido.
-- Calidad y arquitectura de código. Facilidad de lectura y mantenimiento del código. Estándares seguidos.
-- [Bonus] Manejo de logs.
-- [Bonus] Creación de tests (unitarias y de integración)
-- [Bonus] Unificar la solución propuesta en una imagen de Docker por repositorio para poder ser ejecutada en cualquier ambiente (si aplica para full stack).
-
-## Requerimientos de entrega:
-
-- Hacer un fork del proyecto y pushearlo en github. Puede ser privado.
-- La solución debe correr correctamente.
-- El Readme debe contener todas las instrucciones para poder levantar la aplicación, en caso de ser necesario, y explicar cómo se usa.
-- Disponibilidad para realizar una pequeña demo del proyecto al finalizar el challenge.
-- Tiempo para la entrega: Aproximadamente 7 días.
+Nota: Para el estilo del código he utilizado flake8 y también he utilizado isort.
