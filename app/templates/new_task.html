@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<div class="row">
+    <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
+        <h2 class="text-center"><u>Crear nueva tarea</u></h2>
+        {% if not added %}
+            <form method="POST">
+                {% csrf_token %}
+                {% render_form serializer %}
+                <input type="submit" class="btn btn-primary mt-3 col-md-12" value="Create Task">
+            </form>
+        {% else %}
+            <div class="offset-lg-4">
+                <p>Tarea agregada correctamente!</p>
+            </div>
+            <div class="offset-lg-3">
+                <a href="{% url 'new-task' %}" class="btn btn-danger">Haz clic aquí para agregar otra tarea.</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

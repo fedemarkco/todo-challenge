@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<div style='text-align: center;'>
+    <h1><u>Tareas</u></h1>
+    {% for item in items %}
+        <h3>Título: {{item.title}}</h3>
+        <div>Descripción: {{item.description}}</div>
+        <div>Fecha: {{item.created_date}}</div>
+        {% if item.completed %}
+        <div>(Completed)</div>
+        {% else %}
+        <div>(No Completed)</div>
+        <a href="{% url 'set-completed-task' item.id %}" class="btn btn-primary">Marcar completado</a>
+        {% endif %}
+        <a href="{% url 'delete-task' item.id %}" class="btn btn-primary">Eliminar tarea</a>
+        <hr class="hr" />
+    {% empty %}
+        <div>No hay tareas.</div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

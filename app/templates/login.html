@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<div class="row">
+    <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
+        <h2 class="text-center">Iniciar sesión</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% render_form serializer %}
+            <input type="submit" class="btn btn-primary mt-3 col-md-12" value="Sign in">
+        </form>
+        {% if error %}
+        <div style="color:red;">{{error}}</div>
+        {% endif %}
+        <div>&nbsp;</div>
+        <h5>Si no tienes una cuenta, puedes registrarte haciendo clic <a href="{% url 'signup' %}">aquí</a></h3>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<div style='text-align: center;'>
+    <h1><u>Buscar</u></h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="search_title" placeholder="Ingresa nombre de la tarea">
+        <input type="date" name="search_date">
+        <input type="submit" class="btn btn-primary" value="Buscar">
+      </form>
+</div>
+
+{% endblock content %}
+
+

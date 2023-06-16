@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<div class="row">
+    <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
+        <h2 class="text-center">Registrarse</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% render_form serializer %}
+            <input type="submit" class="btn btn-primary mt-3 col-md-12" value="Sign up">
+        </form>
+        {% if error %}
+        <div style="color:red;">El usuario ya existe!</div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

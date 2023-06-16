@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% load rest_framework %}
+
+{% block content %}
+
+<div class="container">
+    <div style='text-align: center;'>
+        <h1>Marcar completada la tarea</h1>
+        ¿Está seguro que quiere marcar como completada la tarea <b>{{item.title}}</b>?
+        <div>&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+    </div>
+    <div class="col-lg-1 gauche">
+        <form action="{% url 'set-completed-task' item.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Aceptar">
+        </form>
+    </div>
+    <div class="col-lg-3 corps">
+        <a href="{% url 'all-tasks' %}"><input type="button" class="btn btn-primary" value="Cancelar"></a>
+    </div>
+    <div class="col-lg-4">
+    </div>
+</div>
+
+{% endblock content %}
